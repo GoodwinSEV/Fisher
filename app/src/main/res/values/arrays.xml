@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="slujeb_array">
+    <item>Овчарка</item>
+    <item>Хилер</item>
+        <item> Пинчер </item>
+        <item> Акита </item>
+        <item> Маламут </item>
+    </string-array>
+    <string-array name="decor_array">
+        <item> Бульдог</item>
+        <item>Терьер</item>
+        <item> Гриффон </item>
+        <item> Мальтезе </item>
+        <item> Болоньез </item>
+    </string-array>
+    <string-array name="ohota_array">
+        <item> Гончая</item>
+        <item>Кокер-спаниель</item>
+        <item> Сеттер </item>
+        <item> Ретривер </item>
+        <item> Бигль </item>
+    </string-array>
+    <string-array name="pitanie_array">
+        <item> Вакцинация</item>
+        <item>Болезни</item>
+        <item> Температура </item>
+        <item> Витамины </item>
+        <item> Корм </item>
+    </string-array>
+    <string-array name="inters_array">
+        <item> Фильмы</item>
+        <item>Выставки</item>
+        <item> Имена </item>
+        <item> Как ухаживать </item>
+        <item> Видят ли собаки сны </item>
+    </string-array>
+
+</resources>

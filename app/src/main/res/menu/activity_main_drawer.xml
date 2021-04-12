@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_sluj"
+            android:icon="@drawable/ic_sish"
+            android:title="Служебные" />
+        <item
+            android:id="@+id/nav_decor"
+            android:icon="@drawable/ic_sish1"
+            android:title="@string/menu_gallery" />
+        <item
+            android:id="@+id/nav_ohota"
+            android:icon="@drawable/ic_sish2"
+            android:title="Охотничьи" />
+
+    </group>
+    <item android:title="Разное" >
+        <menu >
+            <item
+                android:id="@+id/nav_zdorov"
+                android:icon="@drawable/ic_menu_camera"
+                android:title="@string/menu_share" />
+            <item
+                android:id="@+id/nav_inters"
+                android:icon="@drawable/ic_menu_camera"
+                android:title="@string/menu_send" />
+
+        </menu>
+    </item>
+</menu>
