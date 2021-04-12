@@ -7,15 +7,15 @@
         <item
             android:id="@+id/nav_sluj"
             android:icon="@drawable/ic_sish"
-            android:title="Служебные" />
+            android:title="@string/menu_slujeb" />
         <item
             android:id="@+id/nav_decor"
             android:icon="@drawable/ic_sish1"
-            android:title="@string/menu_gallery" />
+            android:title="@string/menu_decor" />
         <item
             android:id="@+id/nav_ohota"
             android:icon="@drawable/ic_sish2"
-            android:title="Охотничьи" />
+            android:title="@string/menu_ohota" />
 
     </group>
     <item android:title="Разное" >
@@ -23,11 +23,11 @@
             <item
                 android:id="@+id/nav_zdorov"
                 android:icon="@drawable/ic_menu_camera"
-                android:title="@string/menu_share" />
+                android:title="@string/menu_zdorov" />
             <item
                 android:id="@+id/nav_inters"
                 android:icon="@drawable/ic_menu_camera"
-                android:title="@string/menu_send" />
+                android:title="@string/menu_inters" />
 
         </menu>
     </item>
