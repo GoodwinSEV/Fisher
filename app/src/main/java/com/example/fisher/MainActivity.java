@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.fisher.settings.SettingsActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -81,55 +82,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
 
         if (id == R.id.nav_sluj) {
-            array = getResources().getStringArray(R.array.slujeb_array);
-            adapter.clear();
-            adapter.addAll(array);
-            adapter.notifyDataSetChanged();
-            toolbar.setTitle(R.string.menu_slujeb);
-            category_index = 0;
-
+            fillArray(R.string.menu_slujeb,R.array.slujeb_array,0);
             Toast.makeText(this, "Nav_home pressed", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_decor) {
-            array = getResources().getStringArray(R.array.decor_array);
-            adapter.clear();
-            adapter.addAll(array);
-            adapter.notifyDataSetChanged();
-            toolbar.setTitle(R.string.menu_decor);
-            category_index = 1;
+        } else
+            if (id == R.id.nav_decor)
+            {
+            fillArray(R.string.menu_decor,R.array.decor_array,1);
 
+        } else
+            if (id == R.id.nav_ohota)
+            {
+            fillArray(R.string.menu_ohota,R.array.ohota_array,2);
 
-        } else if (id == R.id.nav_ohota) {
-            array = getResources().getStringArray(R.array.ohota_array);
-            adapter.clear();
-            adapter.addAll(array);
-            adapter.notifyDataSetChanged();
-            toolbar.setTitle(R.string.menu_ohota);
-            category_index = 2;
+        } else
+            if (id == R.id.nav_zdorov)
+            {
+            fillArray(R.string.menu_zdorov,R.array.pitanie_array,3);
 
-
-        } else if (id == R.id.nav_zdorov) {
-            array = getResources().getStringArray(R.array.pitanie_array);
-            adapter.clear();
-            adapter.addAll(array);
-            adapter.notifyDataSetChanged();
-            toolbar.setTitle(R.string.menu_zdorov);
-            category_index = 3;
-
-
-        } else if (id == R.id.nav_inters) {
-            array = getResources().getStringArray(R.array.inters_array);
-            adapter.clear();
-            adapter.addAll(array);
-            adapter.notifyDataSetChanged();
-            toolbar.setTitle(R.string.menu_inters);
-            category_index = 4;
-
+        } else
+            if (id == R.id.nav_inters)
+            {
+            fillArray(R.string.menu_inters,R.array.inters_array,4);
 
         }
 
@@ -137,5 +130,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             drawer.closeDrawer(GravityCompat.START);
             return true;
 
+    }
+
+    private void fillArray(int title, int array_list, int index)
+    {
+        array = getResources().getStringArray(array_list);
+        adapter.clear();
+        adapter.addAll(array);
+        adapter.notifyDataSetChanged();
+        toolbar.setTitle(title);
+        category_index = index;
     }
 }
