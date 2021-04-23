@@ -59,6 +59,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         list = findViewById(R.id.listView);
         listItemMain = new ArrayList<>();
 
+        fillArray(R.string.akita,
+                getResources().getStringArray(R.array.slujeb_array),
+                getResources().getStringArray(R.array.slujeb_array2),0);
+
         adapter = new CustomArrayAdapter(this, R.layout.list_view_item1,listItemMain,getLayoutInflater());
         list.setAdapter(adapter);
 
@@ -75,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -104,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
@@ -117,13 +123,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-        if (id ==R.id.action_settings) {
+        if (id == R.id.action_settings) {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
 
             startActivity(intent);
         }
 
-
+return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -131,27 +137,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = menuItem.getItemId();
 
         if (id == R.id.nav_sluj) {
-            fillArray(R.string.menu_slujeb,R.array.slujeb_array,0);
-            Toast.makeText(this, "Nav_home pressed", Toast.LENGTH_SHORT).show();
+            fillArray(R.string.menu_slujeb,getResources().getStringArray(R.array.slujeb_array),getResources().getStringArray(R.array.slujeb_array2), 0);
         } else
             if (id == R.id.nav_decor)
             {
-            fillArray(R.string.menu_decor,R.array.decor_array,1);
+            fillArray(R.string.menu_decor,getResources().getStringArray(R.array.decor_array),getResources().getStringArray(R.array.decor_array), 1);
 
         } else
             if (id == R.id.nav_ohota)
             {
-            fillArray(R.string.menu_ohota,R.array.ohota_array,2);
+            fillArray(R.string.menu_ohota,getResources().getStringArray(R.array.ohota_array),getResources().getStringArray(R.array.ohota_array), 2);
 
         } else
             if (id == R.id.nav_zdorov)
             {
-            fillArray(R.string.menu_zdorov,R.array.pitanie_array,3);
+            fillArray(R.string.menu_zdorov,getResources().getStringArray(R.array.pitanie_array),getResources().getStringArray(R.array.pitanie_array), 3);
 
         } else
             if (id == R.id.nav_inters)
             {
-            fillArray(R.string.menu_inters,R.array.inters_array,4);
+            fillArray(R.string.menu_inters,getResources().getStringArray(R.array.inters_array),getResources().getStringArray(R.array.inters_array), 4);
 
         }
 
@@ -161,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    private void fillArray(int title, int array_list, int index)
+    private void fillArray(int title, String[] array, String[] arraySecName, int index)
     {
         toolbar.setTitle(title);
         if (adapter != null) adapter.clear();
@@ -177,8 +182,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (adapter != null) adapter.notifyDataSetChanged();
 
-        adapter.notifyDataSetChanged();
-
         category_index = index;
+
     }
 }
