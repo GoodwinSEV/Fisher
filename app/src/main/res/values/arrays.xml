@@ -7,6 +7,13 @@
         <item> Акита </item>
         <item> Маламут </item>
     </string-array>
+    <string-array name="slujeb_array2">
+    <item>Овчарус</item>
+    <item>Хилерус</item>
+        <item> Пинчерус </item>
+        <item> Акитус </item>
+        <item> Маламутус </item>
+    </string-array>
     <string-array name="decor_array">
         <item> Бульдог</item>
         <item>Терьер</item>

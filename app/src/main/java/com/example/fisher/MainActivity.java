@@ -11,6 +11,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.fisher.settings.SettingsActivity;
+import com.example.fisher.utils.CustomArrayAdapter;
+import com.example.fisher.utils.ListItemClass;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -28,28 +30,46 @@ import androidx.appcompat.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-    private DrawerLayout drawer;
     private ListView list;
-    private String[] array;
-    private ArrayAdapter<String > adapter;
+    private String[] array, arraySecName;
+    private CustomArrayAdapter adapter;
     private Toolbar toolbar;
     private int category_index;
+    private List<ListItemClass> listItemMain;
+    private ListItemClass listItem;
+    private DrawerLayout drawer;
+
+    //private ArrayAdapter<String > adapter;
+
+    private int[] array_dog_color = new int [] {R.color.yellow, R.color.red, R.color.green,R.color.red,R.color.green};
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        list = findViewById(R.id.listView);
-        array = getResources().getStringArray(R.array.slujeb_array);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<String>(Arrays.asList(array)));
-        list.setAdapter(adapter);
-
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        list = findViewById(R.id.listView);
+        listItemMain = new ArrayList<>();
+
+        adapter = new CustomArrayAdapter(this, R.layout.list_view_item1,listItemMain,getLayoutInflater());
+        list.setAdapter(adapter);
+
+        array = getResources().getStringArray(R.array.slujeb_array);
+        arraySecName = getResources().getStringArray(R.array.slujeb_array2);
+
+
+
+    //    adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<String>(Arrays.asList(array)));
+
+
 
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -84,17 +104,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        else
+        {
+            super.onBackPressed();
+        }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
+        if (id ==R.id.action_settings) {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
 
-        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        }
 
-        return super.onOptionsItemSelected(item);
+
     }
 
     @Override
@@ -134,11 +163,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void fillArray(int title, int array_list, int index)
     {
-        array = getResources().getStringArray(array_list);
-        adapter.clear();
-        adapter.addAll(array);
-        adapter.notifyDataSetChanged();
         toolbar.setTitle(title);
+        if (adapter != null) adapter.clear();
+
+        for (int i =0; i < array.length; i++)
+        {
+            listItem = new ListItemClass();
+            listItem.setName(array[i]);
+            listItem.setSecond_name(arraySecName[i]);
+            listItem.setImage_id(array_dog_color[i]);
+            listItemMain.add(listItem);
+        }
+
+        if (adapter != null) adapter.notifyDataSetChanged();
+
+        adapter.notifyDataSetChanged();
+
         category_index = index;
     }
 }
